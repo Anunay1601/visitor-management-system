@@ -337,6 +337,7 @@ The React app will be served locally at `http://localhost:5173`.
 ## Contributors
 
 - **Abhiral Jain** - Lead Developer & Architect
+- **Anunay Chhapre** - Frontend developer & UI expert
 
 ---
 
