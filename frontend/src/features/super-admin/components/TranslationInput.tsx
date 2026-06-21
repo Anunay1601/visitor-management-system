@@ -3,8 +3,8 @@ import { Globe, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { LANGUAGE_LABELS, type SupportedLanguage, type TranslationSchema } from '../types';
 
 interface TranslationInputProps {
-  translations: TranslationSchema;
-  onChange: (translations: TranslationSchema) => void;
+  translations: Partial<TranslationSchema>;
+  onChange: (translations: Partial<TranslationSchema>) => void;
   errors?: Record<string, any>;
   disabled?: boolean;
 }

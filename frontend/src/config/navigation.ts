@@ -14,7 +14,8 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-export type UserRole = 'tenant_admin' | 'receptionist' | 'employee' | 'security' | 'super_admin' | 'support_admin' | 'auditor' | 'manager';
+import { type UserRole } from '@/routes/routesConfig';
+export type { UserRole };
 
 export interface NavigationItem {
   name: string;

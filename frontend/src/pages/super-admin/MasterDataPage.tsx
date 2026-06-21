@@ -145,10 +145,20 @@ export const MasterDataPage: React.FC = () => {
     const selectedType = masterTypes.find(t => t.code === data.typeCode);
 
     const payload = {
-      ...data,
       name: data.translations.en,
-      master_type_id: selectedType?._id,
-      typeCode: data.typeCode,
+      code: data.code,
+      sortOrder: data.sortOrder,
+      status: data.status,
+      master_type_id: selectedType?._id || '',
+      typeCode: data.typeCode || '',
+      translations: {
+        en: data.translations.en || '',
+        hi: data.translations.hi || '',
+        ta: data.translations.ta || '',
+        te: data.translations.te || '',
+        mr: data.translations.mr || '',
+        bn: data.translations.bn || '',
+      }
     };
 
     try {
