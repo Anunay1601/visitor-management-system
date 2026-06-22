@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 dotenv.config();
 
 const app = express(); // ← PEHLE app banao!
+app.set('trust proxy', 1);
 
 // Rate Limiters
 const globalLimiter = rateLimit({
