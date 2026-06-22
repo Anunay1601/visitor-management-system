@@ -31,8 +31,39 @@ const loginLimiter = rateLimit({
 
 // Middleware
 // CORS 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:5174'
+];
+
+if (process.env.FRONTEND_URL) {
+  const urls = process.env.FRONTEND_URL.split(',').map(url => url.trim());
+  urls.forEach(url => {
+    allowedOrigins.push(url);
+    if (!url.startsWith('http')) {
+      allowedOrigins.push(`https://${url}`);
+      allowedOrigins.push(`http://${url}`);
+    }
+  });
+}
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const isAllowed = allowedOrigins.includes(origin) || 
+                      origin.startsWith('http://localhost:') || 
+                      origin.endsWith('.vercel.app');
+                      
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      console.log(`[CORS] Blocked request from origin: ${origin}`);
+      callback(null, false);
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
