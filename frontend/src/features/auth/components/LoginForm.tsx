@@ -33,7 +33,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const [tenants, setTenants] = useState<{_id: string, name: string}[]>([]);
 
     useEffect(() => {
-    fetch('http://localhost:8080/api/tenants/public')
+    const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+    fetch(`${apiBase}/tenants/public`)
     .then(r => r.json())
     .then(res => { if (res.success) setTenants(res.data); })
     .catch(() => {});

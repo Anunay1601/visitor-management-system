@@ -20,8 +20,8 @@ export const LoginPage: React.FC = () => {
   const from = (location.state as any)?.from?.pathname || '/dashboard';
 
   const handleSubmit = async (data: LoginFields) => {
-    // If username is an email address, use it directly. Otherwise, format it as email
-    const email = data.username.includes('@') ? data.username : `${data.username}@company.com`;
+    // Username field mein user apna full email deta hai (e.g. superadmin@vms.com)
+    const email = data.username.trim();
     const success = await loginMutate({ email, password: data.password });
     if (success) {
       const currentUser = useAuthStore.getState().user;
