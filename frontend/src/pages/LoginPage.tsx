@@ -49,8 +49,8 @@ export const LoginPage: React.FC = () => {
         : 'Register your company and start managing visitors.';
     }
     return isHindi
-      ? 'जारी रखने के लिए अपनी कंपनी चुनें और साइन इन करें।'
-      : 'Select your company and sign in to continue.';
+      ? 'जारी रखने के लिए साइन इन करें।'
+      : 'Sign in to continue.';
   };
 
 

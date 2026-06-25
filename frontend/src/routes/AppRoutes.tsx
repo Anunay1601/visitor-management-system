@@ -11,6 +11,7 @@ import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage';
 import { OTPVerificationPage } from '@/pages/OTPVerificationPage';
 import { UnauthorizedPage } from '@/pages/UnauthorizedPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import LandingPage from '@/pages/LandingPage';
 
 const RootRedirect: React.FC = () => {
   const { user } = useAuthStore();
@@ -28,6 +29,9 @@ export const AppRoutes: React.FC = () => {
     <BrowserRouter>
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
+          {/* Public Landing Page */}
+          <Route path="/" element={<LandingPage />} />
+
           {/* Public Authentication pages */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
@@ -38,15 +42,14 @@ export const AppRoutes: React.FC = () => {
 
           {/* Protected nested dashboard views */}
           <Route
-            path="/"
             element={
               <ProtectedRoute>
                 <DashboardLayout />
               </ProtectedRoute>
             }
           >
-            {/* Root index redirects to default dashboard */}
-            <Route index element={<RootRedirect />} />
+            {/* Keep default redirection logic for /dashboard or root if accessed authenticated */}
+            <Route path="/home" element={<RootRedirect />} />
 
             {/* Map out manifest items requiring dashboard framing and route protection */}
             {routesConfig
