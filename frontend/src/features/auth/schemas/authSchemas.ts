@@ -6,11 +6,7 @@ import { z } from 'zod';
 export const loginSchema = z.object({
   username: z
     .string()
-<<<<<<< HEAD
     .min(1, { message: 'Email/Username is required.' }),
-=======
-    .min(1, { message: 'Email is required.' }),
->>>>>>> ef3a2026fc24650d89be979bc659e0592c249768
   password: z
     .string()
     .min(1, { message: 'Password is required.' })
