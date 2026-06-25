@@ -110,6 +110,10 @@ const { auth, checkRole } = require('../middleware/auth');
  *                 default: true
  *               logo_url:
  *                 type: string
+ *               adminPassword:
+ *                 type: string
+ *                 description: Optional initial admin user password (auto-generated if not provided)
+ *                 example: AdminPass123
  *     responses:
  *       201:
  *         description: Tenant created successfully
